@@ -1,0 +1,594 @@
+/* --- Variables & Setup --- */
+:root {
+    --verdigris: #43BCCD;
+    --floral-white: #FFFAF0;
+    --black: #111111;
+    --grey-light: #f0ebe1;
+    
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-accent: 'Space Grotesk', sans-serif;
+
+    --transition-fast: 0.3s ease;
+    --transition-smooth: 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--floral-white);
+    color: var(--black);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--black);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-padding {
+    padding: 6rem 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-family: var(--font-accent);
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--verdigris);
+    color: var(--floral-white);
+    box-shadow: 0 4px 15px rgba(67, 188, 205, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(67, 188, 205, 0.5);
+    background-color: #38a5b5;
+}
+
+/* --- Header --- */
+.header {
+    background-color: rgba(255, 250, 240, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--grey-light);
+}
+/* --- Responsive Logo --- */
+.logo a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+.logo img {
+    max-width: 100%;
+    max-height: 60px; /* Constrains height to keep the header compact */
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Pushes Logo to left, Nav/Hamburger to right */
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-family: var(--font-accent);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.nav-links a:hover {
+    color: var(--verdigris);
+}
+/* --- Hamburger Menu Styles --- */
+.hamburger {
+  	display: block; /* Makes the whole area clickable */
+    padding: 1rem;  /* Gives you a bigger target */
+    position: relative;
+    z-index: 1005;
+}
+
+.hamburger span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: var(--black);
+    border-radius: 3px;
+    transition: all var(--transition-fast);
+}
+
+/* --- Layouts --- */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* --- Hero Section --- */
+.hero-image-col {
+    position: relative;
+}
+
+.abstract-bg {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(135deg, var(--verdigris) 0%, transparent 80%);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: -1;
+    animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    50% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+.profile-photo, .about-img {
+    width: 75%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.accent-text {
+    font-family: var(--font-accent);
+    color: var(--verdigris);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-text-col h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-family: var(--font-accent);
+    font-size: 1.5rem;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 80%;
+}
+
+/* --- About Section --- */
+.bio {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+}
+
+.h-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--grey-light);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.h-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.h-card .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.skill-card {
+    background: #fff;
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+    border-bottom: 4px solid var(--verdigris);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(67, 188, 205, 0.15);
+}
+
+/* --- Projects Carousel --- */
+.carousel-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.carousel-btn {
+    background: var(--black);
+    color: var(--floral-white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background var(--transition-fast);
+}
+
+.carousel-btn:hover {
+    background: var(--verdigris);
+}
+
+.carousel-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 2rem;
+    scrollbar-width: none; /* Firefox */
+}
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome */
+}
+
+.project-card {
+    min-width: 400px;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: transform var(--transition-fast);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--floral-white);
+    color: var(--verdigris);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-family: var(--font-accent);
+    border: 1px solid var(--verdigris);
+}
+
+/* --- Certifications Section --- */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.cert-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    border: 1px solid var(--grey-light);
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--verdigris);
+}
+.cert-img-container {
+    flex-shrink: 0; /* Prevents the image from squishing */
+    width: 120px; 
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--floral-white);
+    border-radius: 8px;
+}
+.cert-image {
+    width: 100%;
+    height: 100%;
+    /* 'contain' ensures the whole certificate is visible without cropping */
+    object-fit: contain; 
+    transition: transform var(--transition-smooth);
+}
+.cert-card:hover .cert-image {
+    transform: scale(1.1); /* Subtle zoom effect on hover */
+}
+
+.cert-logo {
+    border-radius: 8px;
+}
+
+.cert-date {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+    font-family: var(--font-accent);
+}
+
+/* --- Contact Section --- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 1rem;
+    border: 1px solid var(--grey-light);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    background: #fff;
+    transition: border-color var(--transition-fast);
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--verdigris);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-btn {
+    display: block;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid var(--grey-light);
+    border-radius: 8px;
+    text-align: center;
+    font-family: var(--font-accent);
+    font-weight: 700;
+    transition: all var(--transition-fast);
+}
+
+.social-btn:hover {
+    background: var(--black);
+    color: var(--floral-white);
+    transform: translateX(10px);
+}
+
+/* --- Footer --- */
+.footer {
+    background: var(--black);
+    color: var(--floral-white);
+    padding: 2rem 0;
+    font-family: var(--font-accent);
+}
+
+/* --- Animations --- */
+.animate-fade-in {
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.animate-fade-in.visible {
+    opacity: 1;
+}
+
+.animate-slide-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.animate-slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+#form-status {
+    margin-top: 1rem;
+    font-family: var(--font-accent);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+/* --- Responsive Design --- */
+
+/* 1. Large Tablets & Small Laptops */
+@media (max-width: 992px) {
+    .split-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .hero-text-col h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-image-col, .about-image-col {
+        order: -1; /* Puts images on top for mobile */
+    }
+
+    .hero-desc {
+        max-width: 100%;
+    }
+}
+
+/* 2. Standard Tablets & Mobile Phones */
+@media (max-width: 768px) {
+    /* Layout Adjustments */
+    .project-card {
+        min-width: 300px;
+    }
+
+    /* Navigation & Hamburger Position */
+    .hamburger {
+        display: flex;
+        order: 2; /* Pushes hamburger to the right */
+    }
+
+    .logo {
+        order: 1; /* Keeps logo on the left */
+    }
+
+    /* The Mobile Menu Overlay */
+    .nav-links {
+        display: flex !important;
+        position: fixed;
+        left: -100%;
+        top: 0;
+        flex-direction: column;
+        background-color: var(--floral-white);
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        z-index: 1000; 
+        transition: left var(--transition-smooth);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    /* --- Hamburger "X" Animation --- */
+    /* Rotates top bar */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    /* Hides middle bar */
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    /* Rotates bottom bar */
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+/* 3. Small Mobile Phones */
+@media (max-width: 480px) {
+    .logo img {
+        max-height: 35px; /* Slightly larger than 30px for better visibility */
+    }
+
+    .hero-text-col h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* 4. Certificate Mobile Stack (specific to the cert cards) */
+@media (max-width: 600px) {
+    .cert-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .cert-img-container {
+        width: 100%;
+        height: 180px;
+    }
+
+    .cert-details {
+        width: 100%;
+    }
+}
+
+/* --- Added Interaction for Logo Button --- */
+.logo a:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
