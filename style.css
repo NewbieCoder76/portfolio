@@ -293,7 +293,20 @@ a {
 .carousel-container::-webkit-scrollbar {
     display: none; /* Chrome */
 }
+.project-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--dark-color); /* Or your preferred brand color */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
 
+.project-link:hover {
+    color: #007bff; /* A slight blue or your accent color */
+    transform: translateX(5px); /* Moves it slightly to the right on hover */
+}
 .project-card {
     min-width: 400px;
     background: #fff;
